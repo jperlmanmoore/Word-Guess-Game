@@ -1,1 +1,23 @@
 
+  
+  .bg { 
+    background-image: url(../images/15136.jpg);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    min-height: 100%;
+    width: 100%;
+    position: static;
+  }
+   
+
+    /*#bg {
+        background-image: url(../images/background.png);
+        background-repeat: space;
+        width: 50%;
+        min-height: 50%;
+        position: fixed;
+        top: 78px;
+        z-index: -1;;
+    }*/
+
