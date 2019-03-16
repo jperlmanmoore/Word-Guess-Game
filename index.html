@@ -22,7 +22,7 @@
 
 </head>
 
-<body onkeypress="startGame(event)" class="bg">
+<body keydown="startGame(event)" class="bg">
 
     <container class="container-fluid">
         <div class="row">
@@ -40,20 +40,20 @@
                 <br>
                 <br>
             </div>
-            <div id="letterblanks" class="col-6 mt-5 pt-5 font-weight-bold text-center" style="color: black"> <!--align verticle-->
+            <div id="blankSpaces; blankCorrect" class="col-6 mt-5 pt-5 font-weight-bold text-center" style="color: black"> <!--align verticle-->
             <br>
             <br>
             <br>
             <br>
             <br>
-             _ _ _ _ _ _ _ _ _ _
+             
             </div>
             <div class="col-3 font-weight-bold text-center" style="color: red">
                 <p id="winorlose">WIN!/LOSE!</p>
                 <br>
                 <br>
                 <br>
-                <p id="letterchoices"> REMAINING LETTERS</p>
+                <p id="letterChoices"> REMAINING LETTERS</p>
             </div>
         </div>
 
