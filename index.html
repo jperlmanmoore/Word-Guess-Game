@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg">
+<body onkeypress="startGame(event)" class="bg">
 
     <container class="container-fluid">
         <div class="row">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="row ml-1 mt-5 pt-5">
+        <div class="row mt-5 pt-5">
             <div class="col-3 font-weight-bold" style="color: red">
                 <p id="guessesleft" class="text-center">GUESSES LEFT</p>
                 <br>
@@ -48,12 +48,12 @@
             <br>
              _ _ _ _ _ _ _ _ _ _
             </div>
-            <div class="col-3 font-weight-bold" style="color: red">
+            <div class="col-3 font-weight-bold text-center" style="color: red">
                 <p id="winorlose">WIN!/LOSE!</p>
                 <br>
                 <br>
                 <br>
-                <p id="letterchoices"></p>
+                <p id="letterchoices"> REMAINING LETTERS</p>
             </div>
         </div>
 

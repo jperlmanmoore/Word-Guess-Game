@@ -2,24 +2,30 @@
 var wordList = ["Superwomen", "Supergirl", "Harley Quinn", "Lois Lane", 
     "Power Girl", "Captain Marvel", "Catwoman", "Black Widow", 
     "She-Hulk", "Elektra", "Mystique", "Hela", "Nebula", 
-    "The Femme Fatatles", "Gamora", "Green Lantern", "Invisible Woman", "Thor"];
+    "The Femme Fatales", "Gamora", "Green Lantern", "Invisible Woman", "Thor"];
 var currentWord; //what word was random picked
 var lettersInWord; //what letters are in the current word
 var numSpots = 0; //blank for the current word
 var userGuess = []; //what letters the user has guessed
-var blanksCorrect = [];  //correct letters go here
+var blankCorrect = [];  //correct letters go here
 var wrongLetters =[0];   //wrong letters
-var remainingLetters = letters - userGuess //what letters have not been picked
 var wins = 0 //how many wins the player has
 var losses = 0 //how many losses the player has
 var guessesLeft = 10 //how many guesses the player has left
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //alphabet choices ?? not sure if I need this or not...
-
+var remainingLetters = letters - userGuess //what letters have not been picked
 
 //start game - any key selected
-function startGame () {
-    //click any key
+//function startGame() {
+//    onkeydown
+//}
 
+document.addEventListener("keydown", startGame, false);
+
+function startGame(e) {
+  var keyCode = e.keyCode;
+  
+  if(keyCode) {  
     currentWord = wordList[Math.floor(Math.random() * wordList.length)]; //picks a random word from wordList
     lettersInWord = currentWord.split(""); //.split = split a string into substring - shows how many letters are in the currentWord
     numSpots = lettersInWord.length; //says how many blanks to make
@@ -28,12 +34,17 @@ function startGame () {
    
     for (var i=0; i < numSpots; i++) { //what goes in the blanks
         blankCorrect.push("_");
+
 }
 
+console.log(numSpots)
 console.log(currentWord)
 console.log(lettersInWord)
-console.log(numSpots)
-console.log(blanksCorrectLetter)
+console.log(blankCorrect)
+  } else {
+    alert("Oh no you didn't.");
+  }
+}
 
 
 //capture uer's guess
@@ -75,5 +86,5 @@ document.onkeypress = function(event) {
 //bonsu* stylish CSS rules to make design that fits game theme
 
 }
-}
+
 //organize game code as object, except for key events that get to the letter guessed
