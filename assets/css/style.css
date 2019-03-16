@@ -2,12 +2,11 @@
   
   .bg { 
     background-image: url(../images/15136.jpg);
-    background-position: center;
+    background-position: static;
     background-repeat: repeat;
     background-size: cover;
     min-height: 100%;
     width: 100%;
-    position: static;
   }
    
 

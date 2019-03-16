@@ -26,52 +26,51 @@
 
     <container class="container-fluid">
         <div class="row">
-            <div class="d-flex flex-column flex-md-row align-items-center px-md-4 mt-2 bg-white fixed-top" style="opacity: 0.5">
-                <h5 class="h1 ml-lg-4 ml-md-4 my-0 mr-md-auto" style="font-family: Permanent Marker; color: red">Word
-                    Guess</h5>
+            <div class="col-12 fixed-top h1 text-center pt-3" style="font-family: Permanent Marker; color: red">Word Guess
             </div>
         </div>
 
-        <br><br>
-
-        <div class="row">
-            <div class="col-3 ml-5 mt-5 font-weight-bold" style="color: red; opacity: 0.5">
-                <p class="align-items-center">guesses left</p>
+        <div class="row ml-1 mt-5 pt-5">
+            <div class="col-3 font-weight-bold" style="color: red">
+                <p id="guessesleft" class="text-center">GUESSES LEFT</p>
                 <br>
                 <br>
-                <p class="align-items-center">letters picked</p> 
+                <br>
+                <p id="letterspicked" class="text-center">LETTERS PICKED</p> 
                 <br>
                 <br>
-            <div>
-                <!--display win or lose here; appear above the guessed word-->
-                <p>WIN!</p>
             </div>
+            <div id="letterblanks" class="col-6 mt-5 pt-5 font-weight-bold text-center" style="color: black"> <!--align verticle-->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+             _ _ _ _ _ _ _ _ _ _
             </div>
-
-            <div class="col-sm-6">
-                <!--display word blanks and choosen letters-->
-            </div>
-        </div>
-
-<br><br><br><br><br>
-
-        <div class="row">
-            <div class="col-12">
-                <p class="text-center" style="color: rgb(190, 61, 1); font-family: Arial, Helvetica, sans-serif">Press
-                    any key to get started!</p>
+            <div class="col-3 font-weight-bold" style="color: red">
+                <p id="winorlose">WIN!/LOSE!</p>
+                <br>
+                <br>
+                <br>
+                <p id="letterchoices"></p>
             </div>
         </div>
+
 
 
         <footer class="footer fixed-bottom">
-            <div class="container">
-                <h5 class="text-center" style="font-family: Permanent Marker; color: red">Lady
-                                Superheros & Villians</h5>
+            <div>
+                    <p class="text-center" style="color: #666666; font-family: Arial, Helvetica, sans-serif">Press
+                            any key to get started!</p>
+                <h2 class="text-center pb-4 bg-alert" style="font-family: Permanent Marker; color: red">Lady
+                                Superheros & Villians</h2>
             </div>
         </footer>
                    
       </container>
 
+      <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </body>
 
