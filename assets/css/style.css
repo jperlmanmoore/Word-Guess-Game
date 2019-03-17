@@ -8,7 +8,14 @@
     min-height: 100%;
     width: 100%;
   }
-   
+
+  .blanks {
+    letter-spacing: 10px; 
+  }   
+
+  #winorlose {
+    font-size: 30px;
+  }
 
     /*#bg {
         background-image: url(../images/background.png);
