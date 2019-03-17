@@ -1,14 +1,11 @@
-var wordList = ["Superwomen", "Supergirl", "Harley Quinn", "Lois Lane",
-    "Power Girl", "Captain Marvel", "Catwoman", "Black Widow",
-    "She-Hulk", "Elektra", "Mystique", "Hela", "Nebula",
-    "The Femme Fatales", "Gamora", "Green Lantern", "Invisible Woman", "Thor"
-];
-var currentWord = "";
-var guessesLeft = 10;
-var gameMode = "not-started"; // not-started, started, ended 
-var correctLetter = [];
-var wrongLetter = [];
-var blankSpaces = [];
+var wordList = ["Superwomen", "Supergirl", "Harley Quinn", "Lois Lane",     "Power Girl", "Captain Marvel", "Catwoman", "Black Widow",
+    "She-Hulk", "Elektra", "Mystique", "Hela", "Nebula", "The Femme Fatales", "Gamora", "Green Lantern", "Invisible Woman", "Thor"];
+var currentWord = ""; //the current word that was randomly generated from the wordList
+var guessesLeft = 10; //users guesses
+var gameMode = "not-started"; // not-started, started, ended - possible game states
+var correctLetter = []; //array for correct guesses
+var wrongLetter = []; //array for wrong guesses
+var blankSpaces = []; //blanks that display how many letters in current word
 
 //make underscore placeholders for letters in current word
 function generateUnderscores() {
@@ -18,7 +15,7 @@ function generateUnderscores() {
     return blankSpaces;
 }
 
-//determine a guess
+//determine a guess with eventListener
 document.addEventListener("keypress", (event) => {
     var letter = String.fromCharCode(event.keyCode).toLowerCase();
     console.log("letter = '" + letter + "'");
@@ -26,67 +23,59 @@ document.addEventListener("keypress", (event) => {
     //at start of game
     //when game starts *unfortunately the blank tiles don't show until a correct letter is fixed, with more time I would correct this.
     //*also the blank space in two word letters counts as a guess, whcih I could correct.
+    //*also is a space is one of the blanks in the array, the use must click space ot fill it and win, wihch I would correct
     if (gameMode === "not-started") {
         gameMode = "started";
-        guessesLeft = 12;
+        document.getElementById("presstostart").style.display = "none"; //when started the "press to start" goes away
+        guessesLeft = 12; //how many guesses left at start
         document.getElementById("guessesLeft").innerHTML = guessesLeft;
-        currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+        currentWord = wordList[Math.floor(Math.random() * wordList.length)]; //generates randome word
         console.log(currentWord);
-        blankSpaces = [];
+        blankSpaces = []; //array for how many blank spaces are in the chosen word
         document.getElementById("blankSpaces").innerHTML = blankSpaces.join("");
-        wrongLetter = [];
         console.log(generateUnderscores());
-        document.getElementById("presstostart").style.display = "none";
-        document.getElementById("winorlose").innerHTML = "";
+        wrongLetter = []; //array for wrong guesses
         document.getElementById("wrongLetter").innerHTML = "";
+        document.getElementById("winorlose").innerHTML = "";
 
-    
     } else if (gameMode === "started") {
-        //put correct letter is guessed 
+    
         if (currentWord.toLowerCase().indexOf(letter) > -1) {
-            //put in correct letter array
-            correctLetter.push(letter);
+            correctLetter.push(letter); //put in correct letter array
             console.log("correctLetter:");
             console.log(correctLetter);
-
-            //replace underscore
-            //blankSpaces[currentWord.indexOf(letter)] = letter;
-            fillInLetters(blankSpaces, currentWord, letter);
+            fillInLetters(blankSpaces, currentWord, letter); //replace underscore
             console.log("blankSpaces:");
             console.log(blankSpaces);
             document.getElementById("blankSpaces").innerHTML = blankSpaces.join("");
 
             if (blankSpaces.join("") === currentWord) {
-                //display if win or lose
-                document.getElementById("winorlose").innerHTML = "You won!";
-                document.getElementById("presstostart").style.display = "";
+                document.getElementById("winorlose").innerHTML = "You won!";  //display if win
+                document.getElementById("presstostart").style.display = ""; //show "press to start b/c game is over"
                 gameMode = "not-started";
             }
 
         } else {
-            //put wrong letter in array
-            wrongLetter.push(letter);
+            wrongLetter.push(letter); //put wrong letter in array
             document.getElementById("wrongLetter").innerHTML = wrongLetter;
             console.log(wrongLetter);
         }
 
-        //how may guesses left
-        guessesLeft--;
+        
+        guessesLeft--; //how may guesses left
         document.getElementById("guessesLeft").innerHTML = guessesLeft;
 
-        //win or lose & show press to start again
-        if (guessesLeft <= 0) {
+        
+        if (guessesLeft <= 0) { //when win or out of guesses & lose, then game is not started & show "press to start"
             document.getElementById("winorlose").innerHTML = "You Lost!";
             document.getElementById("presstostart").style.display = ""
-            gameMode = "not-started";
+            gameMode = "not-started"; 
         }
     }
 
 });
 
-//if run out of guesses, then you lose
-
-function fillInLetters(blankSpaces, currentWord, letter) {
+function fillInLetters(blankSpaces, currentWord, letter) {  //loop to look for where the guess needs to go & chnage to lower case
     for (var i = 0; i < blankSpaces.length; i++) {
         var l = currentWord[i].toLowerCase();
         var letterLower = letter.toLowerCase();
