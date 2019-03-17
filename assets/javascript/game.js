@@ -3,13 +3,12 @@ var wordList = ["Superwomen", "Supergirl", "Harley Quinn", "Lois Lane",
     "She-Hulk", "Elektra", "Mystique", "Hela", "Nebula",
     "The Femme Fatales", "Gamora", "Green Lantern", "Invisible Woman", "Thor"
 ];
-
-var currentWord = wordList[Math.floor(Math.random() * wordList.length)];
-console.log(currentWord);
+var currentWord = "";
 
 //if game has not started, when a user has entered a letter, random word is picked and game starts
 //how many at start
-guessesLeft = 10;
+var guessesLeft = 10;
+var gameMode = "not-started"; // not-started, started, ended 
 // guesses need to get lower after each guess
 //document.getElementById("guessesLeft"); - display how many guesess left
 
@@ -21,7 +20,7 @@ function generateUnderscores() {
     }
     return blankSpaces;
 }
-console.log(generateUnderscores());
+//console.log(generateUnderscores());
 //need to show blanks on page
 
 //guesses  - on event keyup checking guesses with event.key
@@ -35,34 +34,54 @@ var wrongLetter = [];
 //determine a guess
 document.addEventListener("keypress", (event) => {
     var letter = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(currentWord.indexOf(letter));
+    console.log("letter = '" + letter + "'");
 
-    //put correct letter is guessed 
-    if (currentWord.toLowerCase().indexOf(letter) > -1) {
-        //put in correct letter array
-        correctLetter.push(letter);
-        console.log("correctLetter:");
-        console.log(correctLetter);
-       
-        //replace underscore
-        //blankSpaces[currentWord.indexOf(letter)] = letter;
-        fillInLetters(blankSpaces, currentWord, letter);
-        console.log("blankSpaces:");
-        console.log(blankSpaces);
+    if(gameMode === "not-started") {
+        gameMode = "started";
+        guessesLeft = 10;
+        currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+        console.log(currentWord);
+        blankSpaces = [];
+        console.log(generateUnderscores());
+    }
+    else if(gameMode === "started") {
+        //put correct letter is guessed 
+        if (currentWord.toLowerCase().indexOf(letter) > -1) {
+            //put in correct letter array
+            correctLetter.push(letter);
+            console.log("correctLetter:");
+            console.log(correctLetter);
+        
+            //replace underscore
+            //blankSpaces[currentWord.indexOf(letter)] = letter;
+            fillInLetters(blankSpaces, currentWord, letter);
+            console.log("blankSpaces:");
+            console.log(blankSpaces);
 
-        if(blankSpaces.join("") === currentWord) {
-            //display if win or lose
-            document.getElementById("winorlose").innerHTML = "You won!";
+            if(blankSpaces.join("") === currentWord) {
+                //display if win or lose
+                document.getElementById("winorlose").innerHTML = "You won!";
+                gameMode = "ended";
+            }
+            //look for if second time letter is in same string, then got to wrongLetter
+        
+        } else {
+        
+        //put wrong letter in array
+        if (currentWord.indexOf(letter) < 0) {
+            wrongLetter.push(letter);
+            console.log(wrongLetter);
+            }
         }
-        //look for if second time letter is in same string, then got to wrongLetter
-    
-    } else {
-    
-    //put wrong letter in array
-    if (currentWord.indexOf(letter) < 0) {
-        wrongLetter.push(letter);
-        console.log(wrongLetter);
+
+        guessesLeft--;
+        if(guessesLeft <= 0) {
+            document.getElementById("winorlose").innerHTML = "You Lost!";
+            gameMode = "ended";
         }
+    }
+    else if(gameMode === "ended") {
+
     }
 })
 
