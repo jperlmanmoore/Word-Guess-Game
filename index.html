@@ -11,8 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
@@ -22,38 +22,35 @@
 
 </head>
 
-<body keydown="startGame(event)" class="bg">
+<body onkeyup class="bg">
 
     <container class="container-fluid">
         <div class="row">
-            <div class="col-12 fixed-top h1 text-center pt-3" style="font-family: Permanent Marker; color: red">Word Guess
+            <div class="col-12 fixed-top h1 text-center pt-3" style="font-family: Permanent Marker; color: red">Word
+                Guess
             </div>
         </div>
 
         <div class="row mt-5 pt-5">
-            <div class="col-3 font-weight-bold" style="color: red">
-                <p id="guessesleft" class="text-center">GUESSES LEFT</p>
+            <div class="col-3 font-weight-bold" style="color: #000000">
+                <p class="text-center">GUESSES LEFT</p>
+                <p id="guessesLeft" class="text-center"></p>
                 <br>
                 <br>
                 <br>
-                <p id="letterspicked" class="text-center">LETTERS PICKED</p> 
+                <p class="text-center">WRONG GUESSES</p>
+                <p id="wrongLetter" class="text-center"></p>
                 <br>
                 <br>
             </div>
-            <div id="blankSpaces; blankCorrect" class="col-6 mt-5 pt-5 font-weight-bold text-center" style="color: black"> <!--align verticle-->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-             
-            </div>
-            <div class="col-3 font-weight-bold text-center" style="color: red">
-                <p id="winorlose">WIN!/LOSE!</p>
+            <div id="blankSpaces" class="col-6 mt-5 pt-5 font-weight-bold text-center"></div>
+            <div class="col-3 font-weight-bold text-center" style="color: #000000">
+                <br>
+                <br>
+                <p id="winorlose"></p>
                 <br>
                 <br>
                 <br>
-                <p id="letterChoices"> REMAINING LETTERS</p>
             </div>
         </div>
 
@@ -61,17 +58,18 @@
 
         <footer class="footer fixed-bottom">
             <div>
-                    <p class="text-center" style="color: #666666; font-family: Arial, Helvetica, sans-serif">Press
-                            any key to get started!</p>
+                <p class="text-center" style="color: #333333; font-family: Arial, Helvetica, sans-serif">Press
+                    any key to get started!</p>
                 <h2 class="text-center pb-4 bg-alert" style="font-family: Permanent Marker; color: red">Lady
-                                Superheros & Villians</h2>
+                    Superheros & Villians</h2>
             </div>
         </footer>
-                   
-      </container>
 
-      <script type="text/javascript" src="assets/javascript/game.js"></script>
+    </container>
 
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
+
+
 
 </html>
