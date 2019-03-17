@@ -20,10 +20,14 @@ document.addEventListener("keypress", (event) => {
     var letter = String.fromCharCode(event.keyCode).toLowerCase();
     console.log("letter = '" + letter + "'");
 
-    //at start of game
+    //THINGS TO BE FIXED:
     //when game starts *unfortunately the blank tiles don't show until a correct letter is fixed, with more time I would correct this.
-    //*also the blank space in two word letters counts as a guess, whcih I could correct.
-    //*also is a space is one of the blanks in the array, the use must click space ot fill it and win, wihch I would correct
+    //*the blank space in two word letters counts as a guess, whcih I could correct.
+    //*is a space is one of the blanks in the array, the use must click space ot fill it and win, wihch I would correct
+    //*it counts the same letter guessed against guesses left
+    //*doesn't show solution upon loosing
+    
+    //at start of game
     if (gameMode === "not-started") {
         gameMode = "started";
         document.getElementById("presstostart").style.display = "none"; //when started the "press to start" goes away
@@ -75,8 +79,8 @@ document.addEventListener("keypress", (event) => {
 
 });
 
-function fillInLetters(blankSpaces, currentWord, letter) {  //loop to look for where the guess needs to go & chnage to lower case
-    for (var i = 0; i < blankSpaces.length; i++) {
+function fillInLetters(blankSpaces, currentWord, letter) {  
+    for (var i = 0; i < blankSpaces.length; i++) { //loop to look for where the guess needs to go & chnage to lower case
         var l = currentWord[i].toLowerCase();
         var letterLower = letter.toLowerCase();
         if (l === letterLower) {
