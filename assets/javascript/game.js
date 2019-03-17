@@ -20,13 +20,6 @@ function generateUnderscores() {
     }
     return blankSpaces;
 }
-//console.log(generateUnderscores());
-//need to show blanks on page
-
-//guesses  - on event keyup checking guesses with event.key
-//document.onkeyup = function (event) {
-//var userGuess = event.key;
-//}
 
 var correctLetter = [];
 var wrongLetter = [];
@@ -43,6 +36,7 @@ document.addEventListener("keypress", (event) => {
         console.log(currentWord);
         blankSpaces = [];
         console.log(generateUnderscores());
+        document.getElementById("blankSpaces").innerHTML = blankSpaces;
     }
     else if(gameMode === "started") {
         //put correct letter is guessed 
@@ -57,24 +51,24 @@ document.addEventListener("keypress", (event) => {
             fillInLetters(blankSpaces, currentWord, letter);
             console.log("blankSpaces:");
             console.log(blankSpaces);
+            document.getElementById("blankSpaces").innerHTML = blankSpaces;
 
             if(blankSpaces.join("") === currentWord) {
                 //display if win or lose
                 document.getElementById("winorlose").innerHTML = "You won!";
                 gameMode = "ended";
             }
-            //look for if second time letter is in same string, then got to wrongLetter
         
         } else {
-        
-        //put wrong letter in array
-        if (currentWord.indexOf(letter) < 0) {
+            //put wrong letter in array
             wrongLetter.push(letter);
+            document.getElementById("wrongLetter").innerHTML = wrongLetter;
             console.log(wrongLetter);
-            }
         }
 
         guessesLeft--;
+        document.getElementById("guessesLeft").innerHTML = guessesLeft;
+
         if(guessesLeft <= 0) {
             document.getElementById("winorlose").innerHTML = "You Lost!";
             gameMode = "ended";
@@ -83,27 +77,26 @@ document.addEventListener("keypress", (event) => {
     else if(gameMode === "ended") {
 
     }
-})
+});
 
 //if run out of guesses, then you lose
 
-//bonus* play a sound when the user guesses the word correctly
+function fillInLetters(blankSpaces, currentWord, letter) {
+    for(var i = 0; i < blankSpaces.length; i++)
+    {
+        var l = currentWord[i].toLowerCase();
+        var letterLower = letter.toLowerCase();
+        if (l === letterLower)
+        {
+            blankSpaces[i] = currentWord[i];
+        }
+    }
+}
+
+    //bonus* play a sound when the user guesses the word correctly
 
 
     //bonus* stylish CSS rules to make design that fits game theme
 
 
     //bonus* organize game code as object, except for key events that get to the letter guessed
-
-
-    function fillInLetters(blankSpaces, currentWord, letter) {
-        for(var i = 0; i < blankSpaces.length; i++)
-        {
-            var l = currentWord[i].toLowerCase();
-            var letterLower = letter.toLowerCase();
-            if (l === letterLower)
-            {
-                blankSpaces[i] = currentWord[i];
-            }
-        }
-    }
